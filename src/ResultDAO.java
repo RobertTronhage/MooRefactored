@@ -11,6 +11,6 @@ public interface ResultDAO {
 
     void saveResult(int nGuess, int playerId) throws SQLException;
 
-    void showTopTen() throws SQLException;
+    void showTopTen(IO io) throws SQLException;
 
 }

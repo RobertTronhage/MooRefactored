@@ -27,9 +27,9 @@ public class PlayerDAOMySQLImpl implements PlayerDAO {
         }
     }
 
-    public Player login() throws SQLException, InterruptedException {
-        Controller.gameWindow.addString("Enter your user name:\n");
-        String name = Controller.gameWindow.getString();
+    public Player login(IO io) throws SQLException, InterruptedException {
+        io.addString("Enter your user name:\n");
+        String name = io.getString();
 
         int id = 0;
         String playerName;
@@ -43,9 +43,9 @@ public class PlayerDAOMySQLImpl implements PlayerDAO {
             player = new Player(id, playerName);
 
         } else {
-            Controller.gameWindow.addString("User not in database, please register with admin");
+            io.addString("User not in database, please register with admin");
             Thread.sleep(5000);
-            Controller.gameWindow.exit();
+            io.exit();
         }
         return player;
     }

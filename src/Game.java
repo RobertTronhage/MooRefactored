@@ -8,28 +8,28 @@ import java.sql.SQLException;
 
 public class Game {
 
-    public void playGame(Controller controller,ResultDAO resultDAO, int playerId) throws SQLException {
+    public void playGame(IO io,ResultDAO resultDAO, int loggedInPlayerId) throws SQLException {
         boolean answer = true;
         while (answer) {
             String goalNumber = createGoalNumber();
-            Controller.getGameWindow.clear();
-            Controller.gameWindow.addString("New game:\n");
-            Controller.gameWindow.addString(goalNumber);
-            String guess = Controller.gameWindow.getString();
-            Controller.gameWindow.addString(guess + "\n");
+            io.clear();
+            io.addString("New game:\n");
+            io.addString(goalNumber);
+            String guess = io.getString();
+            io.addString(guess + "\n");
             int nGuess = 1;
             String bbcc = checkBC(goalNumber, guess);
-            Controller.gameWindow.addString(bbcc + "\n");
+            io.addString(bbcc + "\n");
             while (!bbcc.equals("BBBB,")) {
                 nGuess++;
-                guess = Controller.gameWindow.getString();
-                Controller.gameWindow.addString(guess + ": ");
+                guess = io.getString();
+                io.addString(guess + ": ");
                 bbcc = checkBC(goalNumber, guess);
-                Controller.gameWindow.addString(bbcc + "\n");
+                io.addString(bbcc + "\n");
             }
-            resultDAO.saveResult(nGuess, playerId);
-            ResultDAOMySQLImpl.showTopTen();
-            answer = Controller.gameWindow.yesNo("Correct, it took " + nGuess + " guesses\nContinue?");
+            resultDAO.saveResult(nGuess, loggedInPlayerId);
+            resultDAO.showTopTen(io);
+            answer = io.yesNo("Correct, it took " + nGuess + " guesses\nContinue?");
         }
     }
 

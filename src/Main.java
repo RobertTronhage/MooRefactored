@@ -6,9 +6,13 @@
 import java.sql.SQLException;
 
 public class Main {
-    static IO gw;
+
     public static void main(String[] args) throws SQLException, InterruptedException {
-        Controller gameController = new Controller();
+        IO io = new SimpleWindow("Moo");
+        Game game = new Game();
+        PlayerDAO playerDAO = new PlayerDAOMySQLImpl();
+        ResultDAO resultDAO = new ResultDAOMySQLImpl(io);
+        Controller gameController = new Controller(game,playerDAO,resultDAO,io);
         gameController.runGame();
     }
 }

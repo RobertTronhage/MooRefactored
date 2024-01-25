@@ -7,7 +7,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ResultDAOMySQLImpl implements ResultDAO{
+public class ResultDAOMySQLImpl implements ResultDAO {
 
     private static PreparedStatement createPS;
     private PreparedStatement allPS;
@@ -16,7 +16,7 @@ public class ResultDAOMySQLImpl implements ResultDAO{
     private static Connection connection;
 
 
-    public resultDAOMySQLImpl() {
+    public ResultDAOMySQLImpl(IO io) {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/moo", "robert", "Robert12345");
             createPS = connection.prepareStatement("INSERT INTO results (result, playerid) VALUES (?,?)");
@@ -27,35 +27,32 @@ public class ResultDAOMySQLImpl implements ResultDAO{
         }
     }
 
+    @Override
     public void saveResult(int nGuess, int playerId) throws SQLException {
-        createPS.setInt(1,nGuess);
-        createPS.setInt(2,playerId);
+        createPS.setInt(1, nGuess);
+        createPS.setInt(2, playerId);
     }
 
-    public void showTopTen() throws SQLException {
+    public void showTopTen(IO io) throws SQLException {
         ArrayList<PlayerAverage> topList = new ArrayList<>();
         Statement stmt2 = connection.createStatement();
-        ResultSet rs = null;
+        ResultSet rs = stmt2.executeQuery("SELECT players.name, AVG(results.result) AS average " +
+                "FROM players " +
+                "JOIN results ON players.id = results.playerid " +
+                "GROUP BY players.id " +
+                "ORDER BY average ASC " +
+                "LIMIT 10");
+
         while (rs.next()) {
-            int id = rs.getInt("id");
             String name = rs.getString("name");
-            rs = stmt2.executeQuery("select * from results where playerid = " + id);
-            int nGames = 0;
-            int totalGuesses = 0;
-            while (rs.next()) {
-                nGames++;
-                totalGuesses += rs.getInt("result");
-            }
-            if (nGames > 0) {
-                topList.add(new PlayerAverage(name, (double) totalGuesses / nGames));
-            }
+            double average = rs.getDouble("average");
+            topList.add(new PlayerAverage(name, average));
         }
 
-        Controller.gameWindow.addString("Top Ten List\n    Player     Average\n");
+        io.addString("Top Ten List\n    Player     Average\n");
         int pos = 1;
-        topList.sort((p1, p2) -> (Double.compare(p1.average, p2.average)));
         for (PlayerAverage p : topList) {
-            Controller.gameWindow.addString(String.format("%3d %-10s%5.2f%n", pos, p.name, p.average));
+            io.addString(String.format("%3d %-10s%5.2f%n", pos, p.name, p.average));
             if (pos++ == 10) break;
         }
     }

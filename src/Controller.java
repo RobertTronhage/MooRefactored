@@ -7,21 +7,20 @@
 import java.sql.SQLException;
 
 public class Controller {
+    IO io;
+    PlayerDAO playerDAO;
+    ResultDAO resultDAO;
+    Game game;
 
-    private IO gameWindow;
-
-    public Controller(){
-        this.gameWindow = new SimpleWindow("Moo-refactored");
-    }
-
-    public IO getGameWindow(){
-        return gameWindow;
+    public Controller(Game game, PlayerDAO playerDAO, ResultDAO resultDAO, IO io){
+        this.io = io;
+        this.playerDAO = playerDAO;
+        this.resultDAO = resultDAO;
+        this.game = game;
     }
 
     public void runGame() throws SQLException, InterruptedException {
-        ResultDAO resultDAO = new ResultDAOMySQLImpl();
-        PlayerDAO pdao = new PlayerDAOMySQLImpl();
-        Player p1 = pdao.login();
-        Game.playGame(resultDAO, p1.getId());
+        Player loggedInPlayer = playerDAO.login(io);
+        game.playGame(io, resultDAO, loggedInPlayer.getId());
     }
 }

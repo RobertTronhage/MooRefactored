@@ -3,11 +3,14 @@
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-25
  */
+import java.sql.SQLException;
 import java.util.List;
 
 public interface PlayerDAO {
-    public List<Player> getAll();
+    List<Player> getAll();
 
-    public Player getByName(String name);
+    Player getByName(String name);
+
+    Player login(IO io) throws SQLException, InterruptedException;
 
 }
