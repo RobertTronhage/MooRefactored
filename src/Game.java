@@ -6,15 +6,16 @@
 
 import java.sql.SQLException;
 
-public class Game {
+public class Game implements Gameable {
 
-    public void playGame(IO io,ResultDAO resultDAO, int loggedInPlayerId) throws SQLException {
+    @Override
+    public void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId) throws SQLException {
         boolean answer = true;
         while (answer) {
             String goalNumber = createGoalNumber();
             io.clear();
             io.addString("New game:\n");
-            io.addString(goalNumber);
+//            io.addString(goalNumber);
             String guess = io.getString();
             io.addString(guess + "\n");
             int nGuess = 1;
@@ -33,6 +34,7 @@ public class Game {
         }
     }
 
+    @Override
     public String createGoalNumber() {
         String goal = "";
         for (int i = 0; i < 4; i++) {
@@ -47,6 +49,7 @@ public class Game {
         return goal;
     }
 
+    @Override
     public String checkBC(String goal, String guess) {
         guess += "    ";
         int cows = 0, bulls = 0;

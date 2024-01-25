@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-
 public class SimpleWindow implements IO {
     private JFrame window;
     private JTextArea text;
