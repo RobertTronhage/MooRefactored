@@ -1,8 +1,17 @@
+/*
+ * Player class
+ * Author: Robert Tronhage, robert.tronhage@iths.se
+ * 2024-01-25
+ */
 public class Player {
     int id;
     String name;
 
     public Player(String name) {
+        this(0,name);
+    }
+
+    public Player(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -16,13 +25,8 @@ public class Player {
         return STR."Player{name='\{name}\{'\''}\{'}'}";
     }
 
-    static class PlayerAverage {
-        String name;
-        double average;
-        public PlayerAverage(String name, double average) {
-            this.name = name;
-            this.average = average;
-        }
+    public int getId() {
+        return id;
     }
 
 }

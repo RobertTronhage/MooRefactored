@@ -1,3 +1,8 @@
+/*
+ * Result class
+ * Author: Robert Tronhage, robert.tronhage@iths.se
+ * 2024-01-25
+ */
 public class Result {
 
     int id;

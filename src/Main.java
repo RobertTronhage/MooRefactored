@@ -1,10 +1,14 @@
+/*
+ * Main calling controller & runGame method.
+ * Author: Robert Tronhage, robert.tronhage@iths.se
+ * 2024-01-25
+ */
 import java.sql.SQLException;
 
 public class Main {
     static IO gw;
     public static void main(String[] args) throws SQLException, InterruptedException {
-        gw = new SimpleWindow("Moo-refactored");
-        int p1 = PlayerDAOMySQLImpl.login();
-        Game.playGame(p1);
+        Controller gameController = new Controller();
+        gameController.runGame();
     }
 }

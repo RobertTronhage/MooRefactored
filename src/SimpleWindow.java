@@ -1,3 +1,8 @@
+/*
+ * Implementation of IO interface using Swing.
+ * Author: Ulf Bilting
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

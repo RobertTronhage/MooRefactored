@@ -1,32 +1,39 @@
+/*
+* Game logic is stored within this file
+* Author: Robert Tronhage, robert.tronhage@iths.se
+* 2024-01-25
+ */
+
 import java.sql.SQLException;
 
 public class Game {
 
-    public static void playGame(int playerId) throws SQLException {
+    public void playGame(Controller controller,ResultDAO resultDAO, int playerId) throws SQLException {
         boolean answer = true;
         while (answer) {
             String goalNumber = createGoalNumber();
-            MainUsingDAO.gw.clear();
-            MainUsingDAO.gw.addString("New game:\n");
-            String guess = MainUsingDAO.gw.getString();
-            MainUsingDAO.gw.addString(guess + "\n");
+            Controller.getGameWindow.clear();
+            Controller.gameWindow.addString("New game:\n");
+            Controller.gameWindow.addString(goalNumber);
+            String guess = Controller.gameWindow.getString();
+            Controller.gameWindow.addString(guess + "\n");
             int nGuess = 1;
             String bbcc = checkBC(goalNumber, guess);
-            MainUsingDAO.gw.addString(bbcc + "\n");
+            Controller.gameWindow.addString(bbcc + "\n");
             while (!bbcc.equals("BBBB,")) {
                 nGuess++;
-                guess = MainUsingDAO.gw.getString();
-                MainUsingDAO.gw.addString(guess + ": ");
+                guess = Controller.gameWindow.getString();
+                Controller.gameWindow.addString(guess + ": ");
                 bbcc = checkBC(goalNumber, guess);
-                MainUsingDAO.gw.addString(bbcc + "\n");
+                Controller.gameWindow.addString(bbcc + "\n");
             }
-            ResultDAOMySQLImpl.saveResult(nGuess, playerId);
+            resultDAO.saveResult(nGuess, playerId);
             ResultDAOMySQLImpl.showTopTen();
-            answer = MainUsingDAO.gw.yesNo("Correct, it took " + nGuess + " guesses\nContinue?");
+            answer = Controller.gameWindow.yesNo("Correct, it took " + nGuess + " guesses\nContinue?");
         }
     }
 
-    public static String createGoalNumber() {
+    public String createGoalNumber() {
         String goal = "";
         for (int i = 0; i < 4; i++) {
             int random = (int) (Math.random() * 10);
@@ -40,7 +47,7 @@ public class Game {
         return goal;
     }
 
-    public static String checkBC(String goal, String guess) {
+    public String checkBC(String goal, String guess) {
         guess += "    ";
         int cows = 0, bulls = 0;
         for (int i = 0; i < 4; i++) {

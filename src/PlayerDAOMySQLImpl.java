@@ -1,43 +1,53 @@
+/*
+ * SQL Implementation of PlayerDAO, connection/queries to table "players" in DB.
+ * Author: Robert Tronhage, robert.tronhage@iths.se
+ * 2024-01-25
+ */
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDAOMySQLImpl implements PlayerDAO {
-    static Connection connection;
-    static Statement statement;
-    static ResultSet rs;
-    static PreparedStatement createPS,allPS,getByNamePS;
+    private Connection connection;
+    private Statement statement;
+    private ResultSet rs;
+    private PreparedStatement createPS,allPS,getByNamePS;
 
-    public void PlayerDAOMySQLImpl() {
+    public PlayerDAOMySQLImpl() {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/moo", "robert", "Robert12345");
 
             // Initialize prepared statements
             createPS = connection.prepareStatement("INSERT INTO players (name) VALUES (?)");
             allPS = connection.prepareStatement("SELECT * FROM players");
-            getByNamePS = connection.prepareStatement("SELECT * FROM players WHERE name = (?)");
+            getByNamePS = connection.prepareStatement("SELECT id,name FROM players WHERE name = (?)");
 
         } catch (SQLException e) {
             throw new RuntimeException("Failed to execute...", e);
         }
     }
 
-    public static int login() throws SQLException, InterruptedException {
-        MainUsingDAO.gw.addString("Enter your user name:\n");
-        String name = MainUsingDAO.gw.getString();
+    public Player login() throws SQLException, InterruptedException {
+        Controller.gameWindow.addString("Enter your user name:\n");
+        String name = Controller.gameWindow.getString();
 
         int id = 0;
-//        connection = DriverManager.getConnection("jdbc:mysql://localhost/Moo","robert","Robert12345");
-//        stmt = connection.createStatement();
-        ResultSet rs = getByNamePS.executeQuery();
+        String playerName;
+
+        getByNamePS.setString(1,name);
+        rs = getByNamePS.executeQuery();
+        Player player = null;
         if (rs.next()) {
+            playerName = rs.getString("name");
             id = rs.getInt("id");
+            player = new Player(id, playerName);
+
         } else {
-            MainUsingDAO.gw.addString("User not in database, please register with admin");
+            Controller.gameWindow.addString("User not in database, please register with admin");
             Thread.sleep(5000);
-            MainUsingDAO.gw.exit();
+            Controller.gameWindow.exit();
         }
-        return id;
+        return player;
     }
 
     @Override
