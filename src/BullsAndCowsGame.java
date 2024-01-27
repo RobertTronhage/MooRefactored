@@ -1,12 +1,12 @@
 /*
-* Game logic is stored within this file
+* Game logic is stored within this file, implements gameable
 * Author: Robert Tronhage, robert.tronhage@iths.se
 * 2024-01-25
  */
 
 import java.sql.SQLException;
 
-public class Game implements Gameable {
+public class BullsAndCowsGame implements Gameable {
 
     @Override
     public void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId) throws SQLException {
@@ -15,17 +15,17 @@ public class Game implements Gameable {
             String goalNumber = createGoalNumber();
             io.clear();
             io.addString("New game:\n");
-//            io.addString(goalNumber);
+//            io.addString(goalNumber); //remove comment to see magic number
             String guess = io.getString();
             io.addString(guess + "\n");
             int nGuess = 1;
-            String bbcc = checkBC(goalNumber, guess);
+            String bbcc = checkGuessToGoalNumber(goalNumber, guess);
             io.addString(bbcc + "\n");
             while (!bbcc.equals("BBBB,")) {
                 nGuess++;
                 guess = io.getString();
                 io.addString(guess + ": ");
-                bbcc = checkBC(goalNumber, guess);
+                bbcc = checkGuessToGoalNumber(goalNumber, guess);
                 io.addString(bbcc + "\n");
             }
             resultDAO.saveResult(nGuess, loggedInPlayerId);
@@ -50,7 +50,7 @@ public class Game implements Gameable {
     }
 
     @Override
-    public String checkBC(String goal, String guess) {
+    public String checkGuessToGoalNumber(String goal, String guess) {
         guess += "    ";
         int cows = 0, bulls = 0;
         for (int i = 0; i < 4; i++) {

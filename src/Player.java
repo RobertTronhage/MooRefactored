@@ -1,3 +1,4 @@
+
 /*
  * Player class
  * Author: Robert Tronhage, robert.tronhage@iths.se
@@ -22,7 +23,10 @@ public class Player {
 
     @Override
     public String toString() {
-        return STR."Player{name='\{name}\{'\''}\{'}'}";
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public int getId() {

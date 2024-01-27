@@ -10,17 +10,17 @@ public class Controller {
     IO io;
     PlayerDAO playerDAO;
     ResultDAO resultDAO;
-    Game game;
+    BullsAndCowsGame bullsAndCowsGame;
 
-    public Controller(Game game, PlayerDAO playerDAO, ResultDAO resultDAO, IO io){
+    public Controller(BullsAndCowsGame bullsAndCowsGame, PlayerDAO playerDAO, ResultDAO resultDAO, IO io){
         this.io = io;
         this.playerDAO = playerDAO;
         this.resultDAO = resultDAO;
-        this.game = game;
+        this.bullsAndCowsGame = bullsAndCowsGame;
     }
 
     public void runGame() throws SQLException, InterruptedException {
         Player loggedInPlayer = playerDAO.login(io);
-        game.playGame(io, resultDAO, loggedInPlayer.getId());
+        bullsAndCowsGame.playGame(io, resultDAO, loggedInPlayer.getId());
     }
 }

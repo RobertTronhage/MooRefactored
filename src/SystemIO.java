@@ -7,6 +7,8 @@ public class SystemIO implements IO{
         this.scanner = new Scanner(System.in);
     }
 
+
+
     @Override
     public boolean yesNo(String prompt) {
         System.out.print(prompt + " (yes/no): ");
@@ -16,7 +18,7 @@ public class SystemIO implements IO{
 
     @Override
     public String getString() {
-        System.out.print("Enter a string: ");
+        System.out.print("Enter a value: ");
         return scanner.nextLine();
     }
 
