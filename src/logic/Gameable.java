@@ -1,8 +1,11 @@
-/*
+package logic;/*
  * Interface for gamelogic for a numbers guessing game
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-27
  */
+import IO.IO;
+import database.ResultDAO;
+
 import java.sql.SQLException;
 
 public interface Gameable {

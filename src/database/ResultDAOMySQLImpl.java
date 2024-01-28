@@ -1,8 +1,11 @@
-/*
- * SQL Implementation of ResultDAO, connection/queries to table "results" in DB.
+package database;/*
+ * SQL Implementation of database.ResultDAO, connection/queries to table "results" in DB.
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-25
  */
+
+import IO.IO;
+import entity.PlayerAverage;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -49,7 +52,7 @@ public class ResultDAOMySQLImpl implements ResultDAO {
             topList.add(new PlayerAverage(name, average));
         }
 
-        io.addString("Top Ten List\n    Player     Average\n");
+        io.addString("Top Ten List\n    entity.Player     Average\n");
         int pos = 1;
         for (PlayerAverage p : topList) {
             io.addString(String.format("%3d %-10s%5.2f%n", pos, p.name, p.average));

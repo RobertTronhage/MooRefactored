@@ -1,8 +1,11 @@
-/*
+package logic;/*
 * Game logic is stored within this file, implements gameable
 * Author: Robert Tronhage, robert.tronhage@iths.se
 * 2024-01-25
  */
+
+import IO.IO;
+import database.ResultDAO;
 
 import java.sql.SQLException;
 

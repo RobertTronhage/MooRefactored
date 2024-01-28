@@ -1,6 +1,7 @@
+package entity;
 
 /*
- * Player class
+ * entity.Player class
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-25
  */
@@ -23,7 +24,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "entity.Player{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

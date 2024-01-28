@@ -1,8 +1,13 @@
-/*
- * Controller for program.
+package logic;/*
+ * logic.Controller for program.
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-25
  */
+
+import IO.IO;
+import database.PlayerDAO;
+import database.ResultDAO;
+import entity.Player;
 
 import java.sql.SQLException;
 

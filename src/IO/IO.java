@@ -1,3 +1,5 @@
+package IO;
+
 /*
  * Interface for user interface, input & output
  * Author: Robert Tronhage, robert.tronhage@iths.se

@@ -1,5 +1,5 @@
-/*
- * Implementation of IO interface using Swing.
+package IO;/*
+ * Implementation of IO.IO interface using Swing.
  * Author: Ulf Bilting
  */
 

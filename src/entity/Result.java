@@ -1,5 +1,7 @@
+package entity;
+
 /*
- * Result class
+ * entity.Result class
  * Author: Robert Tronhage, robert.tronhage@iths.se
  * 2024-01-25
  */
