@@ -1,8 +1,14 @@
-package database;/*
- * Interface for handling result table in DB
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
+/**
+ * ResultDAO.java
+ *
+ * Interface for data access operations related to game results in the Bulls and Cows game.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
  */
+
+package database;
 
 import IO.IO;
 

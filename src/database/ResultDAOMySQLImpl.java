@@ -1,8 +1,14 @@
-package database;/*
- * SQL Implementation of database.ResultDAO, connection/queries to table "results" in DB.
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
+/**
+ * PlayerDAOMySQLImpl.java
+ *
+ * SQL implementation of ResultDAO.java. Connection/queries to table "result" in DB.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
  */
+
+package database;
 
 import IO.IO;
 import entity.PlayerAverage;
@@ -14,13 +20,11 @@ public class ResultDAOMySQLImpl implements ResultDAO {
 
     private static PreparedStatement createPS;
     private static Connection connection;
-    private PreparedStatement allPS;
 
     public ResultDAOMySQLImpl(IO io) {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/moo", "robert", "Robert12345");
             createPS = connection.prepareStatement("INSERT INTO results (result, playerid) VALUES (?,?)");
-            allPS = connection.prepareStatement("SELECT * FROM results");
 
         } catch (SQLException e) {
             throw new RuntimeException("Failed to execute...", e);
@@ -32,6 +36,7 @@ public class ResultDAOMySQLImpl implements ResultDAO {
         try {
             createPS.setInt(1, nGuess);
             createPS.setInt(2, playerId);
+            createPS.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to execute...", e);
         }
@@ -56,7 +61,7 @@ public class ResultDAOMySQLImpl implements ResultDAO {
                 topList.add(new PlayerAverage(name, average));
             }
 
-            io.addString("Top Ten List\n    entity.Player     Average\n");
+            io.addString("Top Ten List\n    Player     Average\n");
             int pos = 1;
             for (PlayerAverage p : topList) {
                 io.addString(String.format("%3d %-10s%5.2f%n", pos, p.getName(), p.getAverage()));

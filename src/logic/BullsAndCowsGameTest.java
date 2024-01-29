@@ -1,3 +1,13 @@
+/**
+ * BullsAndCowsGameTest.java
+ *
+ * This file contains tests for the game logic implementation for Bulls and Cows.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-29
+ */
+
 package logic;
 
 import org.junit.jupiter.api.DisplayName;
@@ -10,11 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class BullsAndCowsGameTest {
 
     @Test
-    void checkGuessToGoalNumber() {
+    void testGuessToGoalNumber() {
         BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
         assertEquals("BBBB,", bullsAndCowsGame.checkGuessToGoalNumber("1234","1234"));
         assertEquals(",CCCC", bullsAndCowsGame.checkGuessToGoalNumber("4321","1234"));
         assertEquals("BB,CC", bullsAndCowsGame.checkGuessToGoalNumber("1243","1234"));
+        assertEquals(",", bullsAndCowsGame.checkGuessToGoalNumber("0000","1234"));
     }
 
     @RepeatedTest(value = 20, name = "{displayName} {currentRepetition}/{totalRepetitions}")

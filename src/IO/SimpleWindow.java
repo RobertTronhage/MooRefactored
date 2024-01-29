@@ -1,8 +1,13 @@
-package IO;/*
- * Implementation of IO.IO interface using Swing.
- * Author: Ulf Bilting
+/**
+ * SimpleWindow.java
+ *
+ * Input/Output Implementation of Interface IO using Swing.
+ *
+ * @author Ulf Bilting
+ * @contact ulf.bilting@iths.se
  */
 
+package IO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

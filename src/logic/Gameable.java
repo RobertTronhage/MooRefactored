@@ -1,8 +1,15 @@
-package logic;/*
- * Interface for gamelogic for a numbers guessing game
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-27
+/**
+ * Gameable.java
+ *
+ * Interface defining the contract for game-related operations.
+ * Implemented by BullsAndCowsGame to provide game logic.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
  */
+
+package logic;
 import IO.IO;
 import database.ResultDAO;
 

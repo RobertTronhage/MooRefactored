@@ -1,14 +1,18 @@
-package database;/*
- * SQL Implementation of database.PlayerDAO, connection/queries to table "players" in DB.
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
+/**
+ * PlayerDAOMySQLImpl.java
+ *
+ * SQL implementation of PlayerDAO.java. Connection/queries to table "players" in DB.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
  */
+
+package database;
 import IO.IO;
 import entity.Player;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class PlayerDAOMySQLImpl implements PlayerDAO {
     private Connection connection;

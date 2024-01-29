@@ -1,10 +1,15 @@
+/**
+ * IO.java
+ *
+ * Interface defining methods for input/output operations.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
+ */
+
 package IO;
 
-/*
- * Interface for user interface, input & output
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
- */
 public interface IO {
     boolean yesNo(String prompt);
 

@@ -1,16 +1,19 @@
+/**
+ * Result.java
+ *
+ * Represents the result of a game, including the player's ID and result.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
+ */
+
 package entity;
 
-/*
- * entity.Result class
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
- */
 public class Result {
 
     int id;
-
     int playerid;
-
     int result;
 
     public Result(int playerid, int result) {

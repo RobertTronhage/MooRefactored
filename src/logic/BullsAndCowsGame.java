@@ -1,13 +1,17 @@
-package logic;/*
-* Game logic for bullsAndCows is stored within this file, implements gameable
-* Author: Robert Tronhage, robert.tronhage@iths.se
-* 2024-01-25
+/**
+ * BullsAndCowsGame.java
+ *
+ * This file contains the game logic implementation for Bulls and Cows.
+ * It implements the Gameable interface, defining the behavior of the game.
+ *
+ * @author Robert Tronhage, Ulf Bilting
+ * @contact robert.tronhage@iths.se, ulf.bilting@iths.se
+ * @date 2024-01-25
  */
 
+package logic;
 import IO.IO;
 import database.ResultDAO;
-
-import java.sql.SQLException;
 
 public class BullsAndCowsGame implements Gameable {
 
@@ -18,22 +22,22 @@ public class BullsAndCowsGame implements Gameable {
             String goalNumber = createGoalNumber();
             io.clear();
             io.addString("New game:\n");
-            io.addString(goalNumber); //remove comment to see GoalNumber
-            String guess = io.getString();
-            io.addString(guess + "\n");
-            int nGuess = 1;
-            String bbcc = checkGuessToGoalNumber(goalNumber, guess);
+            io.addString(goalNumber + "\n"); //remove comment to see GoalNumber
+            String playerGuess = io.getString();
+            io.addString(playerGuess + "\n");
+            int numberOfGuesses = 1;
+            String bbcc = checkGuessToGoalNumber(goalNumber, playerGuess);
             io.addString(bbcc + "\n");
             while (!bbcc.equals("BBBB,")) {
-                nGuess++;
-                guess = io.getString();
-                io.addString(guess + ": ");
-                bbcc = checkGuessToGoalNumber(goalNumber, guess);
+                numberOfGuesses++;
+                playerGuess = io.getString();
+                io.addString(playerGuess + ": ");
+                bbcc = checkGuessToGoalNumber(goalNumber, playerGuess);
                 io.addString(bbcc + "\n");
             }
-            resultDAO.saveResult(nGuess, loggedInPlayerId);
+            resultDAO.saveResult(numberOfGuesses, loggedInPlayerId);
             resultDAO.showTopTen(io);
-            answer = io.yesNo("Correct, it took " + nGuess + " guesses\nContinue?");
+            answer = io.yesNo("Correct, it took " + numberOfGuesses + " guesses\nContinue?");
         }
     }
 

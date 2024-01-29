@@ -1,9 +1,15 @@
-package logic;/*
- * logic.Controller for program.
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
+/**
+ * Controller.java
+ *
+ * Controller class responsible for coordinating game interactions,
+ * handling player input, and managing game flow.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
  */
 
+package logic;
 import IO.IO;
 import database.PlayerDAO;
 import database.ResultDAO;

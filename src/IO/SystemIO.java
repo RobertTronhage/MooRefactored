@@ -1,3 +1,12 @@
+/**
+ * SystemIO.java
+ *
+ * Input/Output Implementation of Interface IO using console.
+ *
+ * @author Ulf Bilting
+ * @contact ulf.bilting@iths.se
+ */
+
 package IO;
 
 import java.util.Scanner;
@@ -8,8 +17,6 @@ public class SystemIO implements IO{
     public SystemIO() {
         this.scanner = new Scanner(System.in);
     }
-
-
 
     @Override
     public boolean yesNo(String prompt) {
@@ -30,9 +37,7 @@ public class SystemIO implements IO{
     }
 
     @Override
-    public void clear() {
-
-    }
+    public void clear() {}
 
     @Override
     public void exit() {
@@ -43,17 +48,13 @@ public class SystemIO implements IO{
     public static void main(String[] args) {
         IO console = new SystemIO();
 
-        // Example usage
         boolean response = console.yesNo("Do you want to continue?");
         System.out.println("User response: " + response);
 
         String inputString = console.getString();
         System.out.println("User entered: " + inputString);
 
-        console.addString("Hello, world!");
-
         console.clear();
-
         console.exit();
     }
 }

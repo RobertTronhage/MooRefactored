@@ -1,10 +1,16 @@
+/**
+ * Player.java
+ *
+ * Represents a player in the game.
+ * Stores player information including ID and name.
+ *
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-01-25
+ */
+
 package entity;
 
-/*
- * entity.Player class
- * Author: Robert Tronhage, robert.tronhage@iths.se
- * 2024-01-25
- */
 public class Player {
     int id;
     String name;
