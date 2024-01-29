@@ -1,5 +1,5 @@
 package logic;/*
-* Game logic is stored within this file, implements gameable
+* Game logic for bullsAndCows is stored within this file, implements gameable
 * Author: Robert Tronhage, robert.tronhage@iths.se
 * 2024-01-25
  */
@@ -12,13 +12,13 @@ import java.sql.SQLException;
 public class BullsAndCowsGame implements Gameable {
 
     @Override
-    public void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId) throws SQLException {
+    public void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId)  {
         boolean answer = true;
         while (answer) {
             String goalNumber = createGoalNumber();
             io.clear();
             io.addString("New game:\n");
-//            io.addString(goalNumber); //remove comment to see magic number
+            io.addString(goalNumber); //remove comment to see GoalNumber
             String guess = io.getString();
             io.addString(guess + "\n");
             int nGuess = 1;

@@ -30,59 +30,32 @@ public class PlayerDAOMySQLImpl implements PlayerDAO {
         }
     }
 
-    public Player login(IO io) throws SQLException, InterruptedException {
+    public Player login(IO io){
         io.addString("Enter your user name:\n");
         String name = io.getString();
 
         int id = 0;
         String playerName;
 
-        getByNamePS.setString(1,name);
-        rs = getByNamePS.executeQuery();
-        Player player = null;
-        if (rs.next()) {
-            playerName = rs.getString("name");
-            id = rs.getInt("id");
-            player = new Player(id, playerName);
-
-        } else {
-            io.addString("User not in database, please register with admin");
-            Thread.sleep(5000);
-            io.exit();
-        }
-        return player;
-    }
-
-    @Override
-    public List<Player> getAll() {
-        List<Player> players = new ArrayList<>();
-
-        try (ResultSet resultSet = allPS.executeQuery()) {
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                players.add(new Player(name));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return players;
-    }
-
-    @Override
-    public Player getByName(String name) {
         try {
-            getByNamePS.setString(1, name);
-            try (ResultSet resultSet = getByNamePS.executeQuery()) {
-                if (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    return new Player(name);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            getByNamePS.setString(1,name);
+            rs = getByNamePS.executeQuery();
+            Player player = null;
+            if (rs.next()) {
+                playerName = rs.getString("name");
+                id = rs.getInt("id");
+                player = new Player(id, playerName);
 
-        return null;
+            } else {
+                io.addString("User not in database, please register with admin");
+                Thread.sleep(5000);
+                io.exit();
+            }
+            return player;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute...", e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Failed to execute...", e);
+        }
     }
 }

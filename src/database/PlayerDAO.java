@@ -10,10 +10,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PlayerDAO {
-    List<Player> getAll();
-
-    Player getByName(String name);
-
-    Player login(IO io) throws SQLException, InterruptedException;
-
+    Player login(IO io);
 }

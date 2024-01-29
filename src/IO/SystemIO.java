@@ -31,8 +31,7 @@ public class SystemIO implements IO{
 
     @Override
     public void clear() {
-        // Implement clearing console screen if needed
-        System.out.println("Console cleared.");
+
     }
 
     @Override

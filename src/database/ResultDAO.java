@@ -10,8 +10,7 @@ import java.sql.SQLException;
 
 public interface ResultDAO {
 
-    void saveResult(int nGuess, int playerId) throws SQLException;
+    void saveResult(int nGuess, int playerId);
 
-    void showTopTen(IO io) throws SQLException;
-
+    void showTopTen(IO io);
 }

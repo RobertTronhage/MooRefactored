@@ -24,7 +24,7 @@ public class Controller {
         this.bullsAndCowsGame = bullsAndCowsGame;
     }
 
-    public void runGame() throws SQLException, InterruptedException {
+    public void runGame(){
         Player loggedInPlayer = playerDAO.login(io);
         bullsAndCowsGame.playGame(io, resultDAO, loggedInPlayer.getId());
     }

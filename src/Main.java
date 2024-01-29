@@ -11,7 +11,6 @@ import database.ResultDAO;
 import database.ResultDAOMySQLImpl;
 import logic.BullsAndCowsGame;
 import logic.Controller;
-
 import java.sql.SQLException;
 
 public class Main {

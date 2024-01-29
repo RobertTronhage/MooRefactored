@@ -13,11 +13,8 @@ import java.util.ArrayList;
 public class ResultDAOMySQLImpl implements ResultDAO {
 
     private static PreparedStatement createPS;
-    private PreparedStatement allPS;
-    private PreparedStatement getByIdPS;
-    private PreparedStatement getByNamePS;
     private static Connection connection;
-
+    private PreparedStatement allPS;
 
     public ResultDAOMySQLImpl(IO io) {
         try {
@@ -31,32 +28,42 @@ public class ResultDAOMySQLImpl implements ResultDAO {
     }
 
     @Override
-    public void saveResult(int nGuess, int playerId) throws SQLException {
-        createPS.setInt(1, nGuess);
-        createPS.setInt(2, playerId);
+    public void saveResult(int nGuess, int playerId) {
+        try {
+            createPS.setInt(1, nGuess);
+            createPS.setInt(2, playerId);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute...", e);
+        }
     }
 
-    public void showTopTen(IO io) throws SQLException {
+    public void showTopTen(IO io){
         ArrayList<PlayerAverage> topList = new ArrayList<>();
-        Statement stmt2 = connection.createStatement();
-        ResultSet rs = stmt2.executeQuery("SELECT players.name, AVG(results.result) AS average " +
-                "FROM players " +
-                "JOIN results ON players.id = results.playerid " +
-                "GROUP BY players.id " +
-                "ORDER BY average ASC " +
-                "LIMIT 10");
+        try {
+            Statement stmt2 = connection.createStatement();
+            ResultSet rs = stmt2.executeQuery(
+                    "SELECT players.name, AVG(results.result) AS average " +
+                    "FROM players " +
+                    "JOIN results ON players.id = results.playerid " +
+                    "GROUP BY players.id " +
+                    "ORDER BY average ASC " +
+                    "LIMIT 10"
+            );
 
-        while (rs.next()) {
-            String name = rs.getString("name");
-            double average = rs.getDouble("average");
-            topList.add(new PlayerAverage(name, average));
-        }
+            while (rs.next()) {
+                String name = rs.getString("name");
+                double average = rs.getDouble("average");
+                topList.add(new PlayerAverage(name, average));
+            }
 
-        io.addString("Top Ten List\n    entity.Player     Average\n");
-        int pos = 1;
-        for (PlayerAverage p : topList) {
-            io.addString(String.format("%3d %-10s%5.2f%n", pos, p.name, p.average));
-            if (pos++ == 10) break;
+            io.addString("Top Ten List\n    entity.Player     Average\n");
+            int pos = 1;
+            for (PlayerAverage p : topList) {
+                io.addString(String.format("%3d %-10s%5.2f%n", pos, p.getName(), p.getAverage()));
+                if (pos++ == 10) break;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute...", e);
         }
     }
 }
