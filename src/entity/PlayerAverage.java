@@ -1,6 +1,5 @@
 /**
  * PlayerAverage.java
- *
  * Represents the average result of a player in the game.
  * Used for displaying the top players with the lowest average guesses.
  *

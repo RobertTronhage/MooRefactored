@@ -20,20 +20,24 @@ public class BullsAndCowsGame implements Gameable {
         boolean answer = true;
         while (answer) {
             String goalNumber = createGoalNumber();
+
             io.clear();
             io.addString("New game:\n");
-            io.addString(goalNumber + "\n"); //remove comment to see GoalNumber
+//            io.addString(goalNumber + "\n"); //remove comment to see GoalNumber
             String playerGuess = io.getString();
+
             io.addString(playerGuess + "\n");
+
             int numberOfGuesses = 1;
-            String bbcc = checkGuessToGoalNumber(goalNumber, playerGuess);
-            io.addString(bbcc + "\n");
-            while (!bbcc.equals("BBBB,")) {
+            String guessResult = checkGuessToGoalNumber(goalNumber, playerGuess);
+
+            io.addString(guessResult + "\n");
+            while (!guessResult.equals("BBBB,")) {
                 numberOfGuesses++;
                 playerGuess = io.getString();
                 io.addString(playerGuess + ": ");
-                bbcc = checkGuessToGoalNumber(goalNumber, playerGuess);
-                io.addString(bbcc + "\n");
+                guessResult = checkGuessToGoalNumber(goalNumber, playerGuess);
+                io.addString(guessResult + "\n");
             }
             resultDAO.saveResult(numberOfGuesses, loggedInPlayerId);
             resultDAO.showTopTen(io);
@@ -43,26 +47,28 @@ public class BullsAndCowsGame implements Gameable {
 
     @Override
     public String createGoalNumber() {
-        String goal = "";
+        String goalNumber = "";
+
         for (int i = 0; i < 4; i++) {
-            int random = (int) (Math.random() * 10);
-            String randomDigit = "" + random;
-            while (goal.contains(randomDigit)) {
-                random = (int) (Math.random() * 10);
-                randomDigit = "" + random;
+            int randomNumber = (int) (Math.random() * 10);
+            String newNumber = "" + randomNumber;
+            while (goalNumber.contains(newNumber)) {
+                randomNumber = (int) (Math.random() * 10);
+                newNumber = "" + randomNumber;
             }
-            goal += randomDigit;
+            goalNumber += newNumber;
         }
-        return goal;
+        return goalNumber;
     }
 
     @Override
-    public String checkGuessToGoalNumber(String goal, String guess) {
+    public String checkGuessToGoalNumber(String goalNumber, String guess) {
         guess += "    ";
         int cows = 0, bulls = 0;
+
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (goal.charAt(i) == guess.charAt(j)) {
+                if (goalNumber.charAt(i) == guess.charAt(j)) {
                     if (i == j) {
                         bulls++;
                     } else {
@@ -72,15 +78,16 @@ public class BullsAndCowsGame implements Gameable {
             }
         }
         String result = "";
+
         for (int i = 0; i < bulls; i++) {
             result = result + "B";
         }
 
         result = result + ",";
+
         for (int i = 0; i < cows; i++) {
             result = result + "C";
         }
         return result;
     }
-
 }

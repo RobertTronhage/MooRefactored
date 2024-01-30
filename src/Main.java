@@ -1,6 +1,5 @@
 /**
  * Main.java
- *
  * The main class of the game application.
  * Responsible for initializing the game components and starting the game loop.
  *
@@ -22,10 +21,10 @@ public class Main {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         IO io = new SimpleWindow("Moo");
-        //IO.IO io = new IO.SystemIO(); // remove comment and comment out row above to run app in console! :)
+//        IO.IO io = new IO.SystemIO(); // remove comment and comment out row above to run app in console! :)
         BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
         PlayerDAO playerDAO = new PlayerDAOMySQLImpl();
-        ResultDAO resultDAO = new ResultDAOMySQLImpl(io);
+        ResultDAO resultDAO = new ResultDAOMySQLImpl();
         Controller gameController = new Controller(bullsAndCowsGame,playerDAO,resultDAO,io);
         gameController.runGame();
     }

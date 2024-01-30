@@ -22,6 +22,7 @@ public class SystemIO implements IO{
     public boolean yesNo(String prompt) {
         System.out.print(prompt + " (yes/no): ");
         String response = scanner.nextLine().toLowerCase();
+
         return response.equals("yes");
     }
 
@@ -49,9 +50,10 @@ public class SystemIO implements IO{
         IO console = new SystemIO();
 
         boolean response = console.yesNo("Do you want to continue?");
-        System.out.println("User response: " + response);
 
+        System.out.println("User response: " + response);
         String inputString = console.getString();
+
         System.out.println("User entered: " + inputString);
 
         console.clear();

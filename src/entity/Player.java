@@ -27,6 +27,9 @@ public class Player {
     public String getName() {
         return name;
     }
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
@@ -36,8 +39,6 @@ public class Player {
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
+
 
 }

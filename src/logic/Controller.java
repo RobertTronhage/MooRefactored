@@ -1,6 +1,5 @@
 /**
  * Controller.java
- *
  * Controller class responsible for coordinating game interactions,
  * handling player input, and managing game flow.
  *

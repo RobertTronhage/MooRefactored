@@ -1,6 +1,5 @@
 /**
  * Gameable.java
- *
  * Interface defining the contract for game-related operations.
  * Implemented by BullsAndCowsGame to provide game logic.
  *
@@ -17,8 +16,6 @@ import java.sql.SQLException;
 
 public interface Gameable {
     void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId) throws SQLException;
-
     String createGoalNumber();
-
     String checkGuessToGoalNumber(String goal, String guess);
 }

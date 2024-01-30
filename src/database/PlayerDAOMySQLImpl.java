@@ -16,17 +16,15 @@ import java.sql.*;
 
 public class PlayerDAOMySQLImpl implements PlayerDAO {
     private Connection connection;
-    private Statement statement;
     private ResultSet rs;
-    private PreparedStatement createPS,allPS,getByNamePS;
+    private PreparedStatement getByNamePS;
 
     public PlayerDAOMySQLImpl() {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/moo", "robert", "Robert12345");
 
-            // Initialize prepared statements
-            createPS = connection.prepareStatement("INSERT INTO players (name) VALUES (?)");
-            allPS = connection.prepareStatement("SELECT * FROM players");
+         //   createPS = connection.prepareStatement("INSERT INTO players (name) VALUES (?)");
+           // allPS = connection.prepareStatement("SELECT * FROM players");
             getByNamePS = connection.prepareStatement("SELECT id,name FROM players WHERE name = (?)");
 
         } catch (SQLException e) {
