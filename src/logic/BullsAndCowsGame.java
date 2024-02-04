@@ -1,6 +1,5 @@
 /**
  * BullsAndCowsGame.java
- *
  * This file contains the game logic implementation for Bulls and Cows.
  * It implements the Gameable interface.
  *

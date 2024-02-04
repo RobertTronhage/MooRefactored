@@ -1,6 +1,5 @@
 /**
  * PlayerDAO.java
- *
  * Interface for data access operations related to players in the Bulls and Cows game.
  *
  * @author Robert Tronhage

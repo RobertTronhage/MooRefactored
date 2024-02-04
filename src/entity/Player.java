@@ -1,6 +1,5 @@
 /**
  * Player.java
- *
  * Represents a player in the game.
  * Stores player information including ID and name.
  *

@@ -1,10 +1,10 @@
 /**
  * SystemIO.java
- *
  * Input/Output Implementation of Interface IO using console.
  *
- * @author Ulf Bilting
- * @contact ulf.bilting@iths.se
+ * @author Robert Tronhage
+ * @contact robert.tronhage@iths.se
+ * @date 2024-02-04
  */
 
 package IO;
@@ -22,7 +22,6 @@ public class SystemIO implements IO{
     public boolean yesNo(String prompt) {
         System.out.print(prompt + " (yes/no): ");
         String response = scanner.nextLine().toLowerCase();
-
         return response.equals("yes");
     }
 

@@ -1,6 +1,5 @@
 /**
  * BullsAndCowsGameTest.java
- *
  * This file contains tests for the game logic implementation for Bulls and Cows.
  *
  * @author Robert Tronhage
@@ -30,6 +29,36 @@ class BullsAndCowsGameTest {
         assertNotEquals("BBBB",bullsAndCowsGame.checkGuessToGoalNumber("1234","1111"));
     }
 
+    //Should player be able to input letters instead of positive numbers?
+    @Test
+    void testGuessToGoalNumberWithLettersIsteadOfNumbers() {
+        BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
+        String result = bullsAndCowsGame.checkGuessToGoalNumber("1234", "abcd");
+        assertNotEquals("BBBB", result);
+    }
+
+    //Should player be able to input negative numbers instead of positive numbers?
+    @Test
+    void testGuessToGoalNumberWithNegativeNumber() {
+        BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
+        String result = bullsAndCowsGame.checkGuessToGoalNumber("1234", "-1234");
+        assertNotEquals("BBBB", result);
+    }
+    //Should player be able to input to many numbers?
+    @Test
+    void testGuessToGoalNumberWithToManyDigits() {
+        BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
+        String result = bullsAndCowsGame.checkGuessToGoalNumber("1234", "123456789");
+        assertNotEquals("BBBB", result);
+    }
+    //Should player be able to input to few numbers?
+    @Test
+    void testGuessToGoalNumberWithToFewDigits() {
+        BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
+        String result = bullsAndCowsGame.checkGuessToGoalNumber("1234", "1");
+        assertNotEquals("BBBB", result);
+    }
+
     @RepeatedTest(value = 20, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("Test creation of goalNumber")
     public void testCreateGoalNumber() {
@@ -41,6 +70,8 @@ class BullsAndCowsGameTest {
 
         assertTrue(goalNumber.chars().distinct().count() == 4, "each number should be unique");
     }
-}
 
-// fler tester, felinmatning(för många/få siffror,bokstäver), assertfalse.
+    public void testIncorrectInput(){
+
+    }
+}

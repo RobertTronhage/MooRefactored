@@ -1,6 +1,5 @@
 /**
  * ResultDAO.java
- *
  * Interface for data access operations related to game results in the Bulls and Cows game.
  *
  * @author Robert Tronhage

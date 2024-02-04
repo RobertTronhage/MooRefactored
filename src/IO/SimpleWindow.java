@@ -1,6 +1,5 @@
 /**
  * SimpleWindow.java
- *
  * Input/Output Implementation of Interface IO using Swing.
  *
  * @author Ulf Bilting

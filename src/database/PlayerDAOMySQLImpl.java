@@ -1,6 +1,5 @@
 /**
  * PlayerDAOMySQLImpl.java
- *
  * SQL implementation of PlayerDAO.java. Connection/queries to table "players" in DB.
  *
  * @author Robert Tronhage

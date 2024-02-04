@@ -1,6 +1,5 @@
 /**
  * IO.java
- *
  * Interface defining methods for input/output operations.
  *
  * @author Robert Tronhage

@@ -21,16 +21,19 @@ public class Controller {
     PlayerDAO playerDAO;
     ResultDAO resultDAO;
     BullsAndCowsGame bullsAndCowsGame;
+    GuessingGame guessingGame;
 
     public Controller(BullsAndCowsGame bullsAndCowsGame, PlayerDAO playerDAO, ResultDAO resultDAO, IO io){
         this.io = io;
         this.playerDAO = playerDAO;
         this.resultDAO = resultDAO;
         this.bullsAndCowsGame = bullsAndCowsGame;
+//        this.guessingGame = guessingGame;
     }
 
     public void runGame(){
         Player loggedInPlayer = playerDAO.login(io);
         bullsAndCowsGame.playGame(io, resultDAO, loggedInPlayer.getId());
+//        guessingGame.playGame(io, resultDAO, loggedInPlayer.getId());
     }
 }
