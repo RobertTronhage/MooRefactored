@@ -8,14 +8,14 @@
  * @date 2024-01-29
  */
 
-package logic;
+package test;
 
+import logic.BullsAndCowsGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BullsAndCowsGameTest {
 
@@ -26,6 +26,8 @@ class BullsAndCowsGameTest {
         assertEquals(",CCCC", bullsAndCowsGame.checkGuessToGoalNumber("4321","1234"));
         assertEquals("BB,CC", bullsAndCowsGame.checkGuessToGoalNumber("1243","1234"));
         assertEquals(",", bullsAndCowsGame.checkGuessToGoalNumber("0000","1234"));
+
+        assertNotEquals("BBBB",bullsAndCowsGame.checkGuessToGoalNumber("1234","1111"));
     }
 
     @RepeatedTest(value = 20, name = "{displayName} {currentRepetition}/{totalRepetitions}")
@@ -40,3 +42,5 @@ class BullsAndCowsGameTest {
         assertTrue(goalNumber.chars().distinct().count() == 4, "each number should be unique");
     }
 }
+
+// fler tester, felinmatning(för många/få siffror,bokstäver), assertfalse.

@@ -2,7 +2,7 @@
  * BullsAndCowsGame.java
  *
  * This file contains the game logic implementation for Bulls and Cows.
- * It implements the Gameable interface, defining the behavior of the game.
+ * It implements the Gameable interface.
  *
  * @author Robert Tronhage, Ulf Bilting
  * @contact robert.tronhage@iths.se, ulf.bilting@iths.se

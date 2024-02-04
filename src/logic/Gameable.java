@@ -15,7 +15,7 @@ import database.ResultDAO;
 import java.sql.SQLException;
 
 public interface Gameable {
-    void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId) throws SQLException;
+    void playGame(IO io, ResultDAO resultDAO, int loggedInPlayerId);
     String createGoalNumber();
     String checkGuessToGoalNumber(String goal, String guess);
 }

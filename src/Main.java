@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, InterruptedException {
+    public static void main(String[] args) {
         IO io = new SimpleWindow("Moo");
 //        IO.IO io = new IO.SystemIO(); // remove comment and comment out row above to run app in console! :)
         BullsAndCowsGame bullsAndCowsGame = new BullsAndCowsGame();
